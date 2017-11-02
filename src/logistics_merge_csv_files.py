@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-# import os
-# import sys
 import time
-# from collections import defaultdict
-# from tqdm import tqdm
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-# sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 
 all_cols = 'linenum text id subreddit meta time author ups downs authorlinkkarma authorkarma authorisgold'.split()
@@ -25,20 +20,13 @@ def open_with_pandas_read_csv(filename):
         df = pd.read_csv(filename, header=0, usecols=use_cols, names=all_cols)
     end = time.time()
 
-    # print(filename, df[df['subreddit'] == '2'])
     # print("{} seconds elapsed".format(end - start))
     return df
 
 
 def clean_data(df):
-    # print("initial: {}".format(df.shape))
     df = df.dropna()
-    # print("drop NaN: {}".format(df.shape))
-    # df = df[df['text'] != '']
-    # print("remove blanks: {}".format(df.shape))
     df = df.drop_duplicates()
-    # print("drop dups: {}".format(df.shape))
-    # print(df)
     return df
 
 
