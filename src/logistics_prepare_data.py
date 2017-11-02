@@ -38,14 +38,14 @@ def main():
 
     print("Creating small sample for testing purposes")
     small_sample = pd.concat([df.sample(n=100) for df in frames])
-    all_data.to_csv('../res/data_sample.csv')
+    small_sample.to_csv('../res/data_sample.csv')
 
     print("splitting all data into train & test sets")
     train_test_splits = [train_test_split(df, test_size=0.2) for df in frames]
     training_and_validation = [train for (train, test) in train_test_splits]
 
     print("splitting training set into train & validation sets")
-    validation_splits = [train_test_split(df, test_size=1.0/8) for df in frames]
+    validation_splits = [train_test_split(df, test_size=1.0 / 8) for df in training_and_validation]
     training = [train for (train, valid) in validation_splits]
     validation = [valid for (train, valid) in validation_splits]
 
