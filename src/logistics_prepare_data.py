@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-import time
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 
 
@@ -13,14 +11,10 @@ malformed_files = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
 def open_with_pandas_read_csv(filename):
-    start = time.time()
     if malformed_files[all_files.index(filename[7:])] == 1:
         df = pd.read_csv(filename, header=0, usecols=use_cols, names=['linenum']+all_cols, skiprows=1)
     else:
         df = pd.read_csv(filename, header=0, usecols=use_cols, names=all_cols)
-    end = time.time()
-
-    # print("{} seconds elapsed".format(end - start))
     return df
 
 
