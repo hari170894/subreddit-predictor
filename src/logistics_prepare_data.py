@@ -2,6 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+RANDOM_STATE = 3
 
 all_cols = 'linenum text id subreddit meta time author ups downs authorlinkkarma authorkarma authorisgold'.split()
 use_cols = 'text subreddit'.split()
@@ -12,7 +13,7 @@ malformed_files = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
 def open_with_pandas_read_csv(filename):
     if malformed_files[all_files.index(filename[7:])] == 1:
-        df = pd.read_csv(filename, header=0, usecols=use_cols, names=['linenum']+all_cols, skiprows=1)
+        df = pd.read_csv(filename, header=0, usecols=use_cols, names=['linenum'] + all_cols, skiprows=1)
     else:
         df = pd.read_csv(filename, header=0, usecols=use_cols, names=all_cols)
     return df
@@ -37,15 +38,15 @@ def main():
     all_data.to_csv('../res/data_all.csv')
 
     print("Creating small sample for testing purposes")
-    small_sample = pd.concat([df.sample(n=100) for df in frames])
+    small_sample = pd.concat([df.sample(n=100, random_state=RANDOM_STATE) for df in frames])
     small_sample.to_csv('../res/data_sample.csv')
 
     print("splitting all data into train & test sets")
-    train_test_splits = [train_test_split(df, test_size=0.2) for df in frames]
+    train_test_splits = [train_test_split(df, test_size=0.2, random_state=RANDOM_STATE) for df in frames]
     training_and_validation = [train for (train, test) in train_test_splits]
 
     print("splitting training set into train & validation sets")
-    validation_splits = [train_test_split(df, test_size=1.0 / 8) for df in training_and_validation]
+    validation_splits = [train_test_split(df, test_size=1.0 / 8, random_state=RANDOM_STATE) for df in training_and_validation]
     training = [train for (train, valid) in validation_splits]
     validation = [valid for (train, valid) in validation_splits]
 
