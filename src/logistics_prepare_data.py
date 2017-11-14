@@ -39,6 +39,7 @@ def clean_data(df):
         return text
 
     df['text'] = df['text'].apply(remove_links)
+    df = df[df['text'] != '']
 
     return df
 
