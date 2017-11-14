@@ -2,15 +2,17 @@ from __future__ import nested_scopes, generators, division, absolute_import, wit
 import pickle
 
 
-def save_obj(obj, name):
+def save_obj(obj, name, print_debug_info=True):
     sanitized_name = name.replace('.pkl', '')
     with open('../pickle_files/' + sanitized_name + '.pkl', 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
-        print("Saved")
+        if print_debug_info:
+            print("Saved")
 
 
-def load_obj(name):
+def load_obj(name, print_debug_info=True):
     sanitized_name = name.replace('.pkl', '')
     with open('../pickle_files/' + sanitized_name + '.pkl', 'rb') as f:
-        print('Loaded')
+        if print_debug_info:
+            print('Loaded')
         return pickle.load(f)
