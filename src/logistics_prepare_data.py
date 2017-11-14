@@ -23,6 +23,23 @@ def open_with_pandas_read_csv(filename):
 def clean_data(df):
     df = df.dropna()
     df = df.drop_duplicates()
+
+    def remove_links(text):
+        # remove word after each word in banned_prewords
+        banned_prewords = "http https v".split()
+        words = text.split()
+        to_delete = []
+        for i, word in enumerate(words):
+            if word in banned_prewords:
+                if i + 1 < len(words):
+                    to_delete.append(i + 1)
+        for i in reversed(to_delete):
+            del words[i]
+        text = " ".join(words)
+        return text
+
+    df['text'] = df['text'].apply(remove_links)
+
     return df
 
 
