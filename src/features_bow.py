@@ -35,11 +35,11 @@ def apply_feature_representation(in_file, out_file):
 
 
 def main():
-    apply_feature_representation("../res/data_all.csv", "../pickle_files/feature_all.pkl")
-    apply_feature_representation("../res/data_sample.csv", "../pickle_files/feature_sample.pkl")
-    apply_feature_representation("../res/data_train_all.csv", "../pickle_files/feature_train_all.pkl")
-    apply_feature_representation("../res/data_test_all.csv", "../pickle_files/feature_test_all.pkl")
-    apply_feature_representation("../res/data_validate_all.csv", "../pickle_files/feature_validate_all.pkl")
+    apply_feature_representation("../res/data_all.csv", "../pickle_files/feature_all_bow.pkl")
+    apply_feature_representation("../res/data_sample.csv", "../pickle_files/feature_sample_bow.pkl")
+    apply_feature_representation("../res/data_all_train.csv", "../pickle_files/feature_all_train_bow.pkl")
+    apply_feature_representation("../res/data_all_test.csv", "../pickle_files/feature_all_test_bow.pkl")
+    apply_feature_representation("../res/data_all_validate.csv", "../pickle_files/feature_all_validate_bow.pkl")
 
 
 if __name__ == "__main__":

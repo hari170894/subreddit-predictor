@@ -73,9 +73,9 @@ def main():
     testing = pd.concat([test for (train, test) in train_test_splits])
     validation = pd.concat(validation)
 
-    training.to_csv('../res/data_train_all.csv')
-    testing.to_csv('../res/data_test_all.csv')
-    validation.to_csv('../res/data_validate_all.csv')
+    training.to_csv('../res/data_all_train.csv')
+    testing.to_csv('../res/data_all_test.csv')
+    validation.to_csv('../res/data_all_validate.csv')
 
 
 if __name__ == "__main__":
