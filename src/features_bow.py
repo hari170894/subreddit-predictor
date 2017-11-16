@@ -35,8 +35,9 @@ def doc2bow(doc, dictionary, known_words):
 
 
 def bow2vec(bag_of_words, known_words):
-    # the last 2 slots are for <UNK> and <NEVER OCCURS>
-    features_vector = np.zeros(len(known_words) + 2, dtype=np.uint16)
+    # the first slot is for <UNK>
+    # the last slot is for <NEVER OCCURS>
+    features_vector = np.zeros(len(known_words) + 1, dtype=np.uint16)
     for word_id, count in bag_of_words:
         features_vector[word_id] = count
     return features_vector
