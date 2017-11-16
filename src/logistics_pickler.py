@@ -7,12 +7,12 @@ def save_obj(obj, name, print_debug_info=True):
     with open('../pickle_files/' + sanitized_name + '.pkl', 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
         if print_debug_info:
-            print("Saved")
+            print('Saved {}'.format(sanitized_name + '.pkl'))
 
 
 def load_obj(name, print_debug_info=True):
     sanitized_name = name.replace('.pkl', '')
     with open('../pickle_files/' + sanitized_name + '.pkl', 'rb') as f:
         if print_debug_info:
-            print('Loaded')
+            print('Loaded {}'.format(sanitized_name + '.pkl'))
         return pickle.load(f)
