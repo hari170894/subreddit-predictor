@@ -4,6 +4,7 @@ from gensim.corpora.dictionary import Dictionary
 import pandas as pd
 import logistics_pickler
 from tqdm import tqdm
+import numpy as np
 
 
 def apply_feature_representation(in_file, out_file):
@@ -38,9 +39,19 @@ def apply_feature_representation(in_file, out_file):
         subreddit = row['subreddit']
 
         doc = filter_unknowns_in_doc(doc)
-        features = mydict.doc2bow(doc)
-        X.append(features)
+        features_bow = mydict.doc2bow(doc)
+
+        # the last 2 slots are for <UNK> and <NEVER OCCURS>
+        features_vector = np.zeros(len(known_words) + 2, dtype=np.uint16)
+        for word_id, count in features_bow:
+            features_vector[word_id] = count
+
+        X.append(features_vector)
         Y.append(subreddit)
+
+    print("    converting to numpy arrays")
+    X = np.array(X)
+    Y = np.array(Y)
 
     print("    saving file")
     logistics_pickler.save_obj((X, Y), out_file, print_debug_info=False)
