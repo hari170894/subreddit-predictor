@@ -31,15 +31,15 @@ def main():
 
     create_predictions("features_train_word2vec_sum.pkl",
                        "features_validation_word2vec_sum.pkl",
-                       "predictions_word2vec_sum_naive_bayes.pkl")
+                       "predictions_word2vec_sum_svm.pkl")
 
     create_predictions("features_train_word2vec_max.pkl",
                        "features_validation_word2vec_max.pkl",
-                       "predictions_word2vec_max_naive_bayes.pkl")
+                       "predictions_word2vec_max_svm.pkl")
 
     create_predictions("features_train_doc2vec.pkl",
                        "features_validation_doc2vec.pkl",
-                       "predictions_doc2vec.pkl")
+                       "predictions_doc2vec_svm.pkl")
 
 
 if __name__ == "__main__":
