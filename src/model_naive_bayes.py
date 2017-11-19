@@ -26,8 +26,8 @@ def main():
                        "predictions_bow_naive_bayes.pkl")
 
     # create_predictions("features_train_word2vec_sum.pkl",
-    #                    "features_all_validate_bow.pkl",
-    #                    "predictions_bow_naive_bayes.pkl")
+    #                    "features_validation_word2vec_sum.pkl",
+    #                    "predictions_word2vec_naive_bayes.pkl")
 
 
 if __name__ == "__main__":
