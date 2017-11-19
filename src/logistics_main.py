@@ -13,35 +13,46 @@ def load_data():
 def load_features():
     import features_bow
     features_bow.main()
+    print("-" * 30)
 
     import features_doc2vec
     features_doc2vec.main()
+    print("-" * 30)
 
     import features_word2vec
     features_word2vec.main()
+    print("-" * 30)
 
 
 def load_models():
     import model_baseline
     model_baseline.main()
+    print("-" * 30)
 
     # import model_conv_nn
+    print("-" * 30)
 
     # import model_fully_connected_nn
+    print("-" * 30)
 
     # import model_knn
+    print("-" * 30)
 
     import model_naive_bayes
     model_naive_bayes.main()
+    print("-" * 30)
 
     # import model_random_forest
+    print("-" * 30)
 
-    # import model_svm
+    import model_svm
+    model_svm.main()
+    print("-" * 30)
 
 
 
 print("Task selector (quickly run portion of machine learning pipeline)")
-print("=" * 20)
+print("=" * 30)
 print("0 - run everything (download data, extract features, train models)")
 print("1 - download and split data into train, test, validation")
 print("2 - run all feature extractors on data")
