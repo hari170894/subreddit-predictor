@@ -10,7 +10,7 @@ def create_predictions(train_file, test_file, output_file):
     T_test, X_test, Y_test = logistics_pickler.load_obj(test_file)
 
     print("training classifier")
-    clf = SVC()
+    clf = SVC(verbose=True)
     clf.fit(X_train, Y_train)
 
     print("evaluating model")
