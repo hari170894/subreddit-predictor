@@ -45,11 +45,12 @@ def create_and_save_from_model(model, df, filename):
     T = np.array(T)
     X = np.array(X)
     Y = np.array(Y)
-    save_obj((T,X, Y), filename)
+    save_obj((T, X, Y), filename)
+
 
 def main():
     create_features()
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main()

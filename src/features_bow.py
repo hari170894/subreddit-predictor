@@ -67,7 +67,7 @@ def test_csv_to_pickle(test_filename, pickle_filename, dictionary, known_words):
     X = np.array(X)
     Y = np.array(Y)
 
-    logistics_pickler.save_obj((T,X, Y), pickle_filename)
+    logistics_pickler.save_obj((T, X, Y), pickle_filename)
 
 
 def main():

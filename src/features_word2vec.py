@@ -49,7 +49,7 @@ def create_features():
 def create_and_save_from_model(model, df, filename, modeltype):
     X = []
     Y = []
-    T=[]
+    T = []
     # values_to_write = []
     for index, row in df.iterrows():
         if modeltype == 0:
@@ -66,10 +66,12 @@ def create_and_save_from_model(model, df, filename, modeltype):
     X = np.array(X)
     Y = np.array(Y)
 
-    save_obj((T,X, Y), filename)
+    save_obj((T, X, Y), filename)
+
 
 def main():
     create_features()
 
-if __name__== "__main__":
+
+if __name__ == "__main__":
     main()
