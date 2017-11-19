@@ -11,10 +11,10 @@ def create_predictions(train_file, test_file, output_file):
     T_test, X_test, Y_test = logistics_pickler.load_obj(test_file)
 
     print("training classifier")
-    param_grid={'n_neighbors':[1]}
+    param_grid = {'n_neighbors': [1]}
     clf = GridSearchCV(KNeighborsClassifier(), param_grid=param_grid, cv=5)
     clf.fit(X_train, Y_train)
-    print ("Best params .{}".format(clf.best_params_))
+    print("Best params: {}".format(clf.best_params_))
     print("evaluating model")
     y_true = Y_test
     y_pred = clf.predict(X_test)
