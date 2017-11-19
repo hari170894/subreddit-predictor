@@ -3,10 +3,10 @@ from __future__ import nested_scopes, generators, division, absolute_import, wit
 import logistics_pickler
 
 
-def main():
+def create_predictions(train_file, test_file, output_file):
     print("loading pickled feature representation")
-    X_train, Y_train = logistics_pickler.load_obj("../pickle_files/features_all_train_bow.pkl")
-    X_test, Y_test = logistics_pickler.load_obj("../pickle_files/features_all_test_bow.pkl")
+    T_train, X_train, Y_train = logistics_pickler.load_obj(train_file)
+    T_test, X_test, Y_test = logistics_pickler.load_obj(test_file)
 
     print("training classifier")
     most_common_class = max(set(Y_train), key=list(Y_train).count)
@@ -14,7 +14,15 @@ def main():
     print("evaluating model")
     y_true = Y_test
     y_pred = [most_common_class] * len(y_true)
-    logistics_pickler.save_obj((y_true, y_pred), "predictions_baseline.pkl")
+    logistics_pickler.save_obj((T_test, y_true, y_pred), output_file)
+
+
+def main():
+    print("training naive bayes")
+
+    create_predictions("features_all_train_bow.pkl",
+                       "features_all_validate_bow.pkl",
+                       "predictions_any_baseline.pkl")
 
 
 if __name__ == "__main__":
