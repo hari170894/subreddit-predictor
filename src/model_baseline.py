@@ -4,7 +4,7 @@ import logistics_pickler
 
 
 def create_predictions(train_file, test_file, output_file):
-    print("loading pickled feature representation")
+    print("loading pickled feature representation {}".format(train_file))
     T_train, X_train, Y_train = logistics_pickler.load_obj(train_file)
     T_test, X_test, Y_test = logistics_pickler.load_obj(test_file)
 
@@ -23,6 +23,11 @@ def main():
     create_predictions("features_all_train_bow.pkl",
                        "features_all_validate_bow.pkl",
                        "predictions_any_baseline.pkl")
+
+    '''
+    here we don't run for other feature representations because
+    all feature representations will result in the same baseline
+    '''
 
 
 if __name__ == "__main__":
