@@ -49,7 +49,7 @@ def create_features():
 def create_and_save_from_model(model, df, filename, modeltype):
     X = []
     Y = []
-
+    T=[]
     # values_to_write = []
     for index, row in df.iterrows():
         if modeltype == 0:
@@ -58,14 +58,15 @@ def create_and_save_from_model(model, df, filename, modeltype):
             features_vector = sent_vectorizer_maximum(row.text, model)
         label = row.subreddit
         # values_to_write.append([features_vector, label])
+        T.append(row.text)
         X.append(features_vector)
         Y.append(label)
     # save_obj(values_to_write, filename)
-
+    T = np.array(T)
     X = np.array(X)
     Y = np.array(Y)
 
-    save_obj((X, Y), filename)
+    save_obj((T,X, Y), filename)
 
 
 create_features()

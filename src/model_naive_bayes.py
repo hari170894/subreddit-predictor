@@ -6,8 +6,8 @@ from sklearn.naive_bayes import MultinomialNB
 
 def create_predictions(train_file, test_file, output_file):
     print("loading pickled feature representation")
-    X_train, Y_train = logistics_pickler.load_obj(train_file)
-    X_test, Y_test = logistics_pickler.load_obj(test_file)
+    T_train,X_train, Y_train = logistics_pickler.load_obj(train_file)
+    T_test,X_test, Y_test = logistics_pickler.load_obj(test_file)
 
     print("training classifier")
     clf = MultinomialNB()

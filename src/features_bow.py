@@ -46,7 +46,7 @@ def bow2vec(bag_of_words, known_words):
 def test_csv_to_pickle(test_filename, pickle_filename, dictionary, known_words):
     X = []
     Y = []
-
+    T = []
     print("loading csv into memory")
     df = pd.read_csv(test_filename, header=0)
     num_rows = df.shape[0]  # sum(1 for line in open(test_filename))
@@ -58,15 +58,16 @@ def test_csv_to_pickle(test_filename, pickle_filename, dictionary, known_words):
 
         bag_of_words = doc2bow(doc, dictionary, known_words)
         features_vector = bow2vec(bag_of_words, known_words)
-
+        T.append(row.text)
         X.append(features_vector)
         Y.append(subreddit)
 
     print("converting to numpy arrays")
+    T = np.array(T)
     X = np.array(X)
     Y = np.array(Y)
 
-    logistics_pickler.save_obj((X, Y), pickle_filename)
+    logistics_pickler.save_obj((T,X, Y), pickle_filename)
 
 
 def main():
