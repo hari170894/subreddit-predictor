@@ -13,7 +13,7 @@ You'll also want to install the `gensim` python package. You can use the below c
 ## Getting Started
 1. Make sure the prerequisites are all installed.
 2. Clone the repo and `cd` into it.
-3. Run `python src/logistics_main.py` to get a prompt to choose to download the data, do feature extraction and run the models
+3. Run `python src/logistics_main.py` to get a prompt to choose to download the data, do feature extraction or run the models
 
 
 ## Dataset
