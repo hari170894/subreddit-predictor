@@ -39,8 +39,8 @@ def load_models():
     # model_fully_connected_nn.main()
     print("-" * 30)
 
-    # import model_knn
-    # model_knn.main()
+    import model_knn
+    model_knn.main()
     print("-" * 30)
 
     import model_naive_bayes
