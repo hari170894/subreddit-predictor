@@ -73,9 +73,9 @@ def main():
     dictionary, known_words = make_dictionary_and_known_words("../res/data_all_train.csv")
     logistics_pickler.save_obj(dictionary, "feature_bow_dictionary.pkl")
 
-    test_csv_to_pickle("../res/data_all_train.csv", "../pickle_files/feature_all_train_bow.pkl", dictionary, known_words)
-    test_csv_to_pickle("../res/data_all_test.csv", "../pickle_files/feature_all_test_bow.pkl", dictionary, known_words)
-    test_csv_to_pickle("../res/data_all_validate.csv", "../pickle_files/feature_all_validate_bow.pkl", dictionary, known_words)
+    test_csv_to_pickle("../res/data_all_train.csv", "../pickle_files/features_all_train_bow.pkl", dictionary, known_words)
+    test_csv_to_pickle("../res/data_all_test.csv", "../pickle_files/features_all_test_bow.pkl", dictionary, known_words)
+    test_csv_to_pickle("../res/data_all_validate.csv", "../pickle_files/features_all_validate_bow.pkl", dictionary, known_words)
 
 
 if __name__ == "__main__":

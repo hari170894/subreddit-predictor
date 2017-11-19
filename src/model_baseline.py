@@ -4,8 +4,8 @@ import logistics_pickler
 from sklearn.metrics import accuracy_score
 
 print("loading pickled feature representation")
-X_train, Y_train = logistics_pickler.load_obj("../pickle_files/feature_all_train_bow.pkl")
-X_test, Y_test = logistics_pickler.load_obj("../pickle_files/feature_all_test_bow.pkl")
+X_train, Y_train = logistics_pickler.load_obj("../pickle_files/features_all_train_bow.pkl")
+X_test, Y_test = logistics_pickler.load_obj("../pickle_files/features_all_test_bow.pkl")
 
 print("training classifier")
 most_common_class = max(set(Y_train), key=list(Y_train).count)

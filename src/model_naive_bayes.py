@@ -20,6 +20,10 @@ def create_predictions(train_file, test_file, output_file):
     logistics_pickler.save_obj((y_true, y_pred), output_file)
 
 
-create_predictions("feature_all_train_bow.pkl",
-                   "feature_all_validate_bow.pkl",
+create_predictions("features_all_train_bow.pkl",
+                   "features_all_validate_bow.pkl",
                    "predictions_bow_naive_bayes.pkl")
+
+# create_predictions("features_train_word2vec_sum.pkl",
+#                    "features_all_validate_bow.pkl",
+#                    "predictions_bow_naive_bayes.pkl")
