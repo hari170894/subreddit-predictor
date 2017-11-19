@@ -17,7 +17,7 @@ def create_predictions(train_file, test_file, output_file):
     y_true = Y_test
     y_pred = clf.predict(X_test)
 
-    logistics_pickler.save_obj((y_true, y_pred), output_file)
+    logistics_pickler.save_obj((T_test,y_true, y_pred), output_file)
 
 
 def main():

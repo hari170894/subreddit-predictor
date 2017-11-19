@@ -11,7 +11,7 @@ subreddits = 'r/anime r/comicbooks r/dota2 r/leagueoflegends r/conservative r/li
 
 def evaluate_predictions(predictions_filename):
     # load the pickled predictions
-    y_true, y_pred = logistics_pickler.load_obj(predictions_filename)
+    _ , y_true, y_pred = logistics_pickler.load_obj(predictions_filename)
 
     # put all the metrics into a table
     precision, recall, fbeta_score, support = precision_recall_fscore_support(y_true, y_pred)
@@ -29,5 +29,18 @@ def evaluate_predictions(predictions_filename):
     accuracy = accuracy_score(y_true, y_pred)
     print("raw accuracy: {:.6f}".format(accuracy))
 
+def print_incorrect_predictions(predictions_filename, number_of_examples):
+    # load the pickled predictions
+    text, y_true, y_pred = logistics_pickler.load_obj(predictions_filename)
+    i = 0
+    count = 0
+    while i < len(y_true) and count < number_of_examples:
+        if y_pred[i] != y_true[i]:
+            print('\nText :{}'.format(text[i]))
+            print('\nCorrect class : .{}'.format(y_true[i]))
+            print('\n Predicted class : .{}'.format(y_pred[i]))
+            count += 1
+        i += 1
 
 evaluate_predictions("../pickle_files/predictions_bow_naive_bayes.pkl")
+print_incorrect_predictions("../pickle_files/predictions_bow_naive_bayes.pkl",10)
