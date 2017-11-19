@@ -2,6 +2,7 @@ from __future__ import nested_scopes, generators, division, absolute_import, wit
 from gensim.models.doc2vec import TaggedDocument, Doc2Vec
 import pandas as pd
 import nltk
+import numpy as np
 from logistics_pickler import save_obj
 
 
@@ -29,12 +30,21 @@ def create_features():
 
 
 def create_and_save_from_model(model, df, filename):
-    values_to_write = []
+    X = []
+    Y = []
+
+    # values_to_write = []
     for index, row in df.iterrows():
-        vector = model.infer_vector(row['text'])
+        features_vector = model.infer_vector(row['text'])
         label = row.subreddit
-        values_to_write.append([vector, label])
-    save_obj(values_to_write, filename)
+        # values_to_write.append([features_vector, label])
+        X.append(features_vector)
+        Y.append(label)
+    # save_obj(values_to_write, filename)
+
+    X = np.array(X)
+    Y = np.array(Y)
+    save_obj((X, Y), filename)
 
 
 create_features()

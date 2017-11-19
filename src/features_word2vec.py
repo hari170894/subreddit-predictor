@@ -47,15 +47,25 @@ def create_features():
 
 
 def create_and_save_from_model(model, df, filename, modeltype):
-    values_to_write = []
+    X = []
+    Y = []
+
+    # values_to_write = []
     for index, row in df.iterrows():
         if modeltype == 0:
-            vector = sent_vectorizer_addition(row.text, model)
+            features_vector = sent_vectorizer_addition(row.text, model)
         elif modeltype == 1:
-            vector = sent_vectorizer_maximum(row.text, model)
+            features_vector = sent_vectorizer_maximum(row.text, model)
         label = row.subreddit
-        values_to_write.append([vector, label])
-    save_obj(values_to_write, filename)
+        # values_to_write.append([features_vector, label])
+        X.append(features_vector)
+        Y.append(label)
+    # save_obj(values_to_write, filename)
+
+    X = np.array(X)
+    Y = np.array(Y)
+
+    save_obj((X, Y), filename)
 
 
 create_features()
