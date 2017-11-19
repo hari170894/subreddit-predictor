@@ -30,19 +30,31 @@ def evaluate_predictions(predictions_filename):
     print("raw accuracy: {:.6f}".format(accuracy))
 
 
-def print_incorrect_predictions(predictions_filename, number_of_examples):
+def print_incorrect_predictions(predictions_filename, max_predictions_to_show):
     # load the pickled predictions
     text, y_true, y_pred = logistics_pickler.load_obj(predictions_filename)
     i = 0
     count = 0
-    while i < len(y_true) and count < number_of_examples:
+    while i < len(y_true) and count < max_predictions_to_show:
         if y_pred[i] != y_true[i]:
-            print('\nText :{}'.format(text[i]))
-            print('\nCorrect class : .{}'.format(y_true[i]))
-            print('\n Predicted class : .{}'.format(y_pred[i]))
+            print('\nText: {}'.format(text[i]))
+            print('True class      : {}'.format(y_true[i]))
+            print('Predicted class : {}'.format(y_pred[i]))
             count += 1
         i += 1
 
 
+evaluate_predictions("../pickle_files/predictions_any_baseline.pkl")
+print_incorrect_predictions("../pickle_files/predictions_any_baseline.pkl", 10)
+
 evaluate_predictions("../pickle_files/predictions_bow_naive_bayes.pkl")
 print_incorrect_predictions("../pickle_files/predictions_bow_naive_bayes.pkl", 10)
+
+evaluate_predictions("../pickle_files/predictions_word2vec_sum_svm.pkl")
+print_incorrect_predictions("../pickle_files/predictions_word2vec_sum_svm.pkl", 10)
+
+evaluate_predictions("../pickle_files/predictions_word2vec_max_svm.pkl")
+print_incorrect_predictions("../pickle_files/predictions_word2vec_max_svm.pkl", 10)
+
+evaluate_predictions("../pickle_files/predictions_doc2vec_svm.pkl")
+print_incorrect_predictions("../pickle_files/predictions_doc2vec_svm.pkl", 10)
