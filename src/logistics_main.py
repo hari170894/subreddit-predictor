@@ -30,12 +30,15 @@ def load_models():
     print("-" * 30)
 
     # import model_conv_nn
+    # model_conv_nn.main()
     print("-" * 30)
 
     # import model_fully_connected_nn
+    # model_fully_connected_nn.main()
     print("-" * 30)
 
     # import model_knn
+    # model_knn.main()
     print("-" * 30)
 
     import model_naive_bayes
@@ -43,6 +46,7 @@ def load_models():
     print("-" * 30)
 
     # import model_random_forest
+    # model_random_forest.main()
     print("-" * 30)
 
     import model_svm
