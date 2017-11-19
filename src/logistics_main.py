@@ -5,9 +5,11 @@ from __future__ import nested_scopes, generators, division, absolute_import, wit
 def load_data():
     import logistics_download_data
     logistics_download_data.main()
+    print("-" * 30)
 
     import logistics_prepare_data
     logistics_prepare_data.main()
+    print("-" * 30)
 
 
 def load_features():
