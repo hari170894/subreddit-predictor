@@ -17,10 +17,12 @@ def create_predictions(train_file, test_file, output_file):
     y_true = Y_test
     y_pred = clf.predict(X_test)
 
-    logistics_pickler.save_obj((T_test,y_true, y_pred), output_file)
+    logistics_pickler.save_obj((T_test, y_true, y_pred), output_file)
 
 
 def main():
+    print("training naive bayes")
+
     create_predictions("features_all_train_bow.pkl",
                        "features_all_validate_bow.pkl",
                        "predictions_bow_naive_bayes.pkl")
