@@ -6,19 +6,18 @@ from logistics_pickler import save_obj
 
 
 def create_features():
-
-    train_df=pd.read_csv('../res/data_all_train.csv', header=0)
-    test_df=pd.read_csv('../res/data_all_test.csv', header=0)
-    validation_df=pd.read_csv('../res/data_all_validate.csv', header=0)
-    i=1
-    documents=[]
+    train_df = pd.read_csv('../res/data_all_train.csv', header=0)
+    test_df = pd.read_csv('../res/data_all_test.csv', header=0)
+    validation_df = pd.read_csv('../res/data_all_validate.csv', header=0)
+    i = 1
+    documents = []
     for doc in train_df.text:
         unicode_string = nltk.word_tokenize(doc.decode('utf8'))
         tagged_document = TaggedDocument(unicode_string, str("D" + str(i)))
         i += 1
         documents.append(tagged_document)
 
-    print(len(documents))
+    print("number of documents: {}".format(len(documents)))
 
     model = Doc2Vec(documents, size=300, window=8, min_count=0, workers=4, alpha=0.025)
 
