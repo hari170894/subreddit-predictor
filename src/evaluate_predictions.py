@@ -5,8 +5,12 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_recall_fscore_support
 import numpy as np
 import pandas as pd
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+
 
 subreddits = 'r/anime r/comicbooks r/dota2 r/leagueoflegends r/conservative r/libertarian r/askscience r/explainlikeimfive r/gameofthrones r/thewalkingdead'.split()
+# subreddits = 'anime comicbooks dota2 leagueoflegends conservative libertarian askscience explainlikeimfive gameofthrones thewalkingdead'.split()
 
 
 def evaluate_predictions(predictions_filename):
@@ -44,17 +48,53 @@ def print_incorrect_predictions(predictions_filename, max_predictions_to_show):
         i += 1
 
 
-evaluate_predictions("../pickle_files/predictions_any_baseline.pkl")
-print_incorrect_predictions("../pickle_files/predictions_any_baseline.pkl", 10)
+def plot_confusion_matrix(predictions_filename, model_name=None):
+    if model_name is None:
+        model_name = predictions_filename
 
-evaluate_predictions("../pickle_files/predictions_bow_naive_bayes.pkl")
-print_incorrect_predictions("../pickle_files/predictions_bow_naive_bayes.pkl", 10)
+    text, y_true, y_pred = logistics_pickler.load_obj(predictions_filename)
 
-evaluate_predictions("../pickle_files/predictions_word2vec_sum_svm.pkl")
-print_incorrect_predictions("../pickle_files/predictions_word2vec_sum_svm.pkl", 10)
+    conf_matrix = confusion_matrix(y_true, y_pred)
+    plt.imshow(conf_matrix, interpolation='nearest')
 
-evaluate_predictions("../pickle_files/predictions_word2vec_max_svm.pkl")
-print_incorrect_predictions("../pickle_files/predictions_word2vec_max_svm.pkl", 10)
+    plt.title("confusion matrix for {}".format(model_name))
+    plt.colorbar()
+    tick_marks = np.arange(len(subreddits))
+    plt.xticks(tick_marks, subreddits, rotation=45)
+    plt.yticks(tick_marks, subreddits)
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
 
-evaluate_predictions("../pickle_files/predictions_doc2vec_svm.pkl")
-print_incorrect_predictions("../pickle_files/predictions_doc2vec_svm.pkl", 10)
+
+# print("evaluating baseline")
+# evaluate_predictions("predictions_any_baseline.pkl")
+# print_incorrect_predictions("predictions_any_baseline.pkl", 10)
+# plot_confusion_matrix("predictions_any_baseline.pkl", "Baseline")
+
+# evaluate_predictions("predictions_bow_naive_bayes.pkl")
+# print_incorrect_predictions("predictions_bow_naive_bayes.pkl", 10)
+plot_confusion_matrix("predictions_bow_naive_bayes.pkl", "Naive Bayes on BOW")
+
+
+# evaluate_predictions("predictions_bow_svm.pkl")
+# print_incorrect_predictions("predictions_bow_svm.pkl", 10)
+# plot_confusion_matrix("predictions_bow_svm.pkl", "SVM on BOW")
+
+# evaluate_predictions("predictions_bow_linear_svm.pkl")
+# print_incorrect_predictions("predictions_bow_linear_svm.pkl", 10)
+
+
+# evaluate_predictions("predictions_word2vec_sum_svm.pkl")
+# print_incorrect_predictions("predictions_word2vec_sum_svm.pkl", 10)
+
+# evaluate_predictions("predictions_word2vec_max_svm.pkl")
+# print_incorrect_predictions("predictions_word2vec_max_svm.pkl", 10)
+
+# evaluate_predictions("predictions_doc2vec_svm.pkl")
+# print_incorrect_predictions("predictions_doc2vec_svm.pkl", 10)
+
+# evaluate_predictions("predictions_bow_knn.pkl")
+# print_incorrect_predictions("predictions_bow_knn.pkl", 10)
+# plot_confusion_matrix("predictions_bow_knn.pkl")
